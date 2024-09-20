@@ -9,6 +9,7 @@
    import java.awt.*;
    import javax.swing.*;
    import javax.swing.JOptionPane;   // KENV 9/8/2004
+   import com.formdev.flatlaf.*;
 
 /*
 Copyright (c) 2003-2012,  Pete Sanderson and Kenneth Vollmar
@@ -127,6 +128,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       private int simulateErrorExitCode;// MARS command exit code to return if simulation error occurs
    		
       public MarsLaunch(String[] args) {
+         FlatLightLaf.install();
          boolean gui = (args.length == 0);
          Globals.initialize(gui);  
          if (gui) {
