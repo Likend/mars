@@ -226,6 +226,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       
          this.pack();
          this.setVisible(true);
+
+        mainPane.editTabbedPane.newFile();
       }
    	
    	
