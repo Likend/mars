@@ -53,6 +53,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       private VenusUI mainUI;
       private Editor editor;
       private FileOpener fileOpener;
+
+      public boolean isFirstTime;
    
     /**
       *  Constructor for the EditTabbedPane class. 
@@ -153,6 +155,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
          this.setSelectedComponent(editPane);
          updateTitlesAndMenuState(editPane);
          editPane.tellEditingComponentToRequestFocusInWindow();
+         
+         isFirstTime = false;
       }
    	
    	
@@ -616,6 +620,13 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             FileStatus.setFile(theFile);
             FileStatus.set(FileStatus.OPENING);// DPS 9-Aug-2011
             if (theFile.canRead()) {
+               // A new file would be added in the tab as default, and should be 
+               // remove when opening an exist file.
+               if (isFirstTime){ 
+                  remove(0); // Remove the first tab.
+                  isFirstTime = false;
+               }
+
                Globals.program = new MIPSprogram();
                try {
                   Globals.program.readSource(currentFilePath);
